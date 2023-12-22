@@ -104,7 +104,7 @@ public class gameManager : MonoBehaviour
 
         timeScore = time * 10;
         timeScoreTxt.text = timeScore.ToString("N2");
-        totalScore = timeScore - count;
+        totalScore = timeScore - (count * 2);
         totalScoreTxt.text = totalScore.ToString("N2");
     }
 }
