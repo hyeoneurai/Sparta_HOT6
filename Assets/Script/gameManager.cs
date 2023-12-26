@@ -18,6 +18,8 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
+    public GameObject mtime;
+    public Animator mtimeAni;
     bool timeSound = false;
     public Text selectedCharacterTxt; 
     public float time = 30.0f; 
@@ -86,6 +88,7 @@ public class gameManager : MonoBehaviour
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
+        mtime.SetActive(false);
 
         if (firstCardImage == secondCardImage)
         {
@@ -114,6 +117,8 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            mtime.SetActive(true);
+            mtimeAni.SetTrigger("endMtime");
             // 불일치하는 경우 실패 메시지 표시
             Debug.Log("Not Matched! Try Again.");
             selectedCharacterTxt.text = "실패!";
