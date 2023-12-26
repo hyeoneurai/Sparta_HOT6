@@ -114,12 +114,11 @@ public class gameManager : MonoBehaviour
     {
         endPanel.SetActive(true);
         Time.timeScale = 0f;
+        audioSource.Stop(); // 게임 종료시 음악 정지
 
         timeScore = time * 10;
         timeScoreTxt.text = timeScore.ToString("N2");
         totalScore = timeScore - count;
         totalScoreTxt.text = totalScore.ToString("N2");
     }
-
-    //테스트
 }
