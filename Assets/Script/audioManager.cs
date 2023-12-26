@@ -16,6 +16,9 @@ public class audioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.i.time <= 10.0f)
+        {
+            audioSource.Stop(); //기존 배경음악정지 
+        }
     }
 }

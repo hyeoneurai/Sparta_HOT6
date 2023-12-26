@@ -9,6 +9,7 @@ public class gameManager : MonoBehaviour
     public static gameManager i;
     public AudioSource audioSource;
     public AudioClip match;
+    public AudioClip timeLess;
     public Text timeTxt;
     public GameObject endPanel;
     public GameObject card;
@@ -17,12 +18,12 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
+    bool timeSound = false; 
 
-    float time = 30.0f;
+    public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
     int count = 0;
-	int test = 0;
 
     void Awake()
     {
@@ -62,13 +63,24 @@ public class gameManager : MonoBehaviour
         {
             gameOver();
         }
+        if (time <= 10.0f)
+        {
+            timeTxt.text = "<color=#FF2D00>" + time.ToString("N2") + "</color>"; //타이머색 변경
+            if (timeSound == false) //중첩재생 방지
+            {
+                audioSource.clip = timeLess;
+                audioSource.Play(); //재생
+                audioSource.loop = true; //소리 반복재생
+                timeSound = true; //중첩방지
+            }
+        }
     }
 
     public void isMatched()
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-
+        
         if (firstCardImage == secondCardImage)
         {
             audioSource.PlayOneShot(match);
