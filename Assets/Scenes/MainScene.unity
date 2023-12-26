@@ -502,6 +502,9 @@ MonoBehaviour:
   mtime: {fileID: 1583939975}
   mtimeAni: {fileID: 1583939979}
   selectedCharacterTxt: {fileID: 1419111231}
+  start: {fileID: 8300000, guid: 94eaf578f9c9f084abf53c149c7c22bc, type: 3}
+  miss: {fileID: 8300000, guid: ddf683bedba50f14ead1699ce91169ae, type: 3}
+  win: {fileID: 8300000, guid: 6efddd74629c7c94db9e629d63955c79, type: 3}
   time: 30
 --- !u!82 &376812910
 AudioSource:
