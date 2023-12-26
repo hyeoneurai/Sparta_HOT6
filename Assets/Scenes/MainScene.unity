@@ -502,9 +502,6 @@ MonoBehaviour:
   mtime: {fileID: 1583939975}
   mtimeAni: {fileID: 1583939979}
   selectedCharacterTxt: {fileID: 1419111231}
-  start: {fileID: 8300000, guid: 94eaf578f9c9f084abf53c149c7c22bc, type: 3}
-  miss: {fileID: 8300000, guid: ddf683bedba50f14ead1699ce91169ae, type: 3}
-  win: {fileID: 8300000, guid: 6efddd74629c7c94db9e629d63955c79, type: 3}
   time: 30
 --- !u!82 &376812910
 AudioSource:
@@ -1268,7 +1265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 280}
+  m_AnchoredPosition: {x: 280, y: 400}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1533725379

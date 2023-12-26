@@ -22,10 +22,8 @@ public class gameManager : MonoBehaviour
     public Animator mtimeAni;
     public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
 
-    public GameObject mtime;
-    public Animator mtimeAni;
     bool timeSound = false;
-    public Text selectedCharacterTxt; 
+    
     public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
