@@ -22,7 +22,6 @@ public class gameManager : MonoBehaviour
     public Text selectedCharacterTxt; 
     public GameObject mtime;
     public Animator mtimeAni;
-    bool timeSound = false; 
     public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
