@@ -7,6 +7,8 @@ public class card : MonoBehaviour
     public Animator anim;
     public AudioClip flip;
     public AudioSource audioSource;
+    public string characterName; // 캐릭터 이름을 저장하기 위한 새로운 변수
+
     // Start is called before the first frame update
     void Start()
     {

@@ -18,7 +18,8 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
-    bool timeSound = false; 
+    bool timeSound = false;
+    public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
 
     public float time = 30.0f; 
     float timeScore = 0f;
@@ -36,10 +37,13 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         
         int[] rtans = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7};
+        // 각 카드의 팀원이름 추가
+        string[] characterNames = { "이진우", "이진우", "김준서", "김준서", "채호선", "채호선", "김현래", "박재현" };
 
+        // 랜덤정렬
         rtans = rtans.OrderBy(item => Random.Range(-1f, 1f)).ToArray();
 
-        for (int i = 0; i< 16; i++)
+        for (int i = 0; i< 16; i++) // for문으로 카드배치 
         {
             GameObject newCard = Instantiate(card);
             newCard.transform.parent = GameObject.Find("cards").transform;
@@ -50,6 +54,9 @@ public class gameManager : MonoBehaviour
             
             string rtanName = rtans[i].ToString();
             newCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(rtanName);
+
+            // 캐릭터 이름을 카드와 연결하기 위한 추가 코드
+            newCard.GetComponent<card>().characterName = characterNames[rtans[i]];
         }
     }
 
@@ -93,9 +100,27 @@ public class gameManager : MonoBehaviour
             {
                 gameOver();
             }
+
+            // 일치하는 캐릭터 이름을 UI에 표시
+            string characterName = firstCard.GetComponent<card>().characterName;
+
+            // Debug.Log
+            Debug.Log("First Card Image: " + firstCardImage);
+            Debug.Log("Character Name: " + characterName);
+            Debug.Log("Selected Characters Text: " + selectedCharacterTxt.text);
+
+            selectedCharacterTxt.text = characterName;
+
+            Invoke("ClearFailureMessage", 1.0f);
         }
         else
         {
+            // 불일치하는 경우 실패 메시지 표시
+            Debug.Log("Not Matched! Try Again.");
+            selectedCharacterTxt.text = "실패!";
+
+            Invoke("ClearFailureMessage", 1.0f);// 2초 후에 ClearFailureMessage 메서드 호출
+
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();
 
@@ -120,5 +145,11 @@ public class gameManager : MonoBehaviour
         timeScoreTxt.text = timeScore.ToString("N2");
         totalScore = timeScore - count;
         totalScoreTxt.text = totalScore.ToString("N2");
+    }
+
+    // 실패 메시지 지우는 메서드
+    void ClearFailureMessage()
+    {
+        selectedCharacterTxt.text = ""; // 빈 문자열로 설정하여 텍스트를 지움
     }
 }
