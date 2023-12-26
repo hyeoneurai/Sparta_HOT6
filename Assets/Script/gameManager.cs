@@ -22,8 +22,11 @@ public class gameManager : MonoBehaviour
     public Animator mtimeAni;
     public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
 
+    public AudioClip start; //시작시 소리
+    public AudioClip miss; //불일치시 소리
+    public AudioClip win; //게임완료시 소리
     bool timeSound = false;
-    
+
     public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
@@ -31,7 +34,9 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-        i = this; 
+        i = this;
+        audioSource.PlayOneShot(start); //시작할때마다 소리지원
+
     }
 
     // Start is called before the first frame update
@@ -103,6 +108,8 @@ public class gameManager : MonoBehaviour
             if (cardsLeft == 2)
             {
                 gameOver();
+                audioSource.PlayOneShot(win); //게임완료시 소리지원
+
             }
 
             // 일치하는 캐릭터 이름을 UI에 표시
@@ -119,11 +126,15 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+
+
             mtime.SetActive(true);
             mtimeAni.SetTrigger("endMtime");
             // 불일치하는 경우 실패 메시지 표시
             Debug.Log("Not Matched! Try Again.");
             selectedCharacterTxt.text = "실패!";
+            audioSource.PlayOneShot(miss); //카드불일치시 소리지원
+
 
             Invoke("ClearFailureMessage", 1.0f);// 2초 후에 ClearFailureMessage 메서드 호출
             time -= 1f;
