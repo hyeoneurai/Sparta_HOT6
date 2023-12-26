@@ -18,15 +18,14 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
+    public GameObject mtime;
+    public Animator mtimeAni;
+    public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
 
     public GameObject mtime;
     public Animator mtimeAni;
-    bool timeSound = false; 
-
-   
-    public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
-
-
+    bool timeSound = false;
+    public Text selectedCharacterTxt; 
     public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
@@ -93,7 +92,8 @@ public class gameManager : MonoBehaviour
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-        
+        mtime.SetActive(false);
+
         if (firstCardImage == secondCardImage)
         {
             audioSource.PlayOneShot(match);
@@ -121,11 +121,14 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            mtime.SetActive(true);
+            mtimeAni.SetTrigger("endMtime");
             // 불일치하는 경우 실패 메시지 표시
             Debug.Log("Not Matched! Try Again.");
             selectedCharacterTxt.text = "실패!";
 
             Invoke("ClearFailureMessage", 1.0f);// 2초 후에 ClearFailureMessage 메서드 호출
+            time -= 1f;
 
 
             firstCard.GetComponent<card>().closeCard();
