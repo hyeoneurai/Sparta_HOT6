@@ -18,6 +18,8 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
+    public GameObject mtime;
+    public Animator mtimeAni;
     bool timeSound = false; 
 
     public float time = 30.0f; 
@@ -80,7 +82,8 @@ public class gameManager : MonoBehaviour
     {
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-        
+        mtime.SetActive(false);
+
         if (firstCardImage == secondCardImage)
         {
             audioSource.PlayOneShot(match);
@@ -96,6 +99,10 @@ public class gameManager : MonoBehaviour
         }
         else
         {
+            mtime.SetActive(true);
+            mtimeAni.SetTrigger("endMtime");
+            time -= 1f;
+
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();
 
