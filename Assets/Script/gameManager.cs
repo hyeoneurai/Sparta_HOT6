@@ -22,6 +22,7 @@ public class gameManager : MonoBehaviour
     float timeScore = 0f;
     float totalScore = 0f;
     int count = 0;
+	int test = 0;
 
     void Awake()
     {
