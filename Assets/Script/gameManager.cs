@@ -18,8 +18,14 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
-    bool timeSound = false;
+
+    public GameObject mtime;
+    public Animator mtimeAni;
+    bool timeSound = false; 
+
+   
     public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
+
 
     public float time = 30.0f; 
     float timeScore = 0f;
@@ -120,6 +126,7 @@ public class gameManager : MonoBehaviour
             selectedCharacterTxt.text = "실패!";
 
             Invoke("ClearFailureMessage", 1.0f);// 2초 후에 ClearFailureMessage 메서드 호출
+
 
             firstCard.GetComponent<card>().closeCard();
             secondCard.GetComponent<card>().closeCard();

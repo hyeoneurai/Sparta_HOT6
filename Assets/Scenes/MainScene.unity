@@ -490,7 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 376812910}
   match: {fileID: 8300000, guid: 1534b72050d13064e962361776ec1b7a, type: 3}
-  timeLess: {fileID: 0}
+  timeLess: {fileID: 8300000, guid: 3de9bb99206acc44c8ea977076f33b8e, type: 3}
   timeTxt: {fileID: 228028393}
   endPanel: {fileID: 272411970}
   card: {fileID: 58403893883122903, guid: 128e1ea01e09be445982d60a8e610e6b, type: 3}
@@ -499,6 +499,8 @@ MonoBehaviour:
   countTxt: {fileID: 816259080}
   timeScoreTxt: {fileID: 1555021750}
   totalScoreTxt: {fileID: 1206329042}
+  mtime: {fileID: 0}
+  mtimeAni: {fileID: 0}
   selectedCharacterTxt: {fileID: 1419111231}
   time: 30
 --- !u!82 &376812910
@@ -513,7 +515,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.437
   m_Pitch: 1
   Loop: 0
   Mute: 0
