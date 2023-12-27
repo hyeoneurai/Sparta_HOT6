@@ -83,6 +83,7 @@ public class gameManager : MonoBehaviour
         if (recordTime >= 4.5)
         {
             firstCard.GetComponent<card>().closeCard();
+            firstCard.transform.Find("back").GetComponent<SpriteRenderer>().color = new Color(160 / 255f, 160 / 255f, 160 / 255f, 255 / 255f);
             firstCard = null;
             recordTime = 0;
         }
