@@ -20,7 +20,17 @@ public class card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (record == true) 
+
+    }
+    public void openCard()
+    {
+        audioSource.PlayOneShot(flip);
+
+        anim.SetBool("isOpen", true);
+        transform.Find("front").gameObject.SetActive(true);
+        transform.Find("back").gameObject.SetActive(false);
+
+        if (record == true)
         {
             recordTime += Time.deltaTime; //시간기록 시작
             // 수정: recordTime이 5초 이상인지 확인하는 조건으로 변경
@@ -30,17 +40,8 @@ public class card : MonoBehaviour
                 recordTime = 0; //카운트 완료후 다시 초기화2
                 Invoke("closeCardInvoke", 0f);
                 gameManager.i.firstCard = null; //첫번째 카드 초기화
-
             }
         }
-    }
-    public void openCard()
-    {
-        audioSource.PlayOneShot(flip);
-
-        anim.SetBool("isOpen", true);
-        transform.Find("front").gameObject.SetActive(true);
-        transform.Find("back").gameObject.SetActive(false);
 
         if (gameManager.i.firstCard == null)
         {
@@ -52,7 +53,6 @@ public class card : MonoBehaviour
             record = false; // 두 번째 카드를 열 때 시간 기록 중지
             gameManager.i.secondCard = gameObject;
             gameManager.i.isMatched();
-
         }
     }
 
