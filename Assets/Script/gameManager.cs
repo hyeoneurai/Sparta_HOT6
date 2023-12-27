@@ -138,6 +138,8 @@ public class gameManager : MonoBehaviour
             selectedCharacterTxt.text = characterName;
 
             Invoke("ClearFailureMessage", 1.0f);
+
+            count -= 1;
         }
         else
         {
@@ -175,9 +177,10 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0f;
         audioSource.Stop(); // 게임 종료시 음악 정지
 
-        timeScore = time;
+        timeScore = time * 2;
         timeScoreTxt.text = timeScore.ToString("N2");
         totalScore = timeScore - count;
+        totalScore = Mathf.Max(0.0f, totalScore);
         totalScoreTxt.text = totalScore.ToString("N2");
     }
 
