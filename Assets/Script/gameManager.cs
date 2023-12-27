@@ -46,7 +46,7 @@ public class gameManager : MonoBehaviour
         
         int[] rtans = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7};
         // 각 카드의 팀원이름 추가
-        string[] characterNames = { "이진우", "이진우", "김준서", "김준서", "채호선", "채호선", "김현래", "박재현" };
+        string[] characterNames = { "이진우", "이진우", "김준서", "김준서", "채호선", "채호선", "김현래", "김현래" };
 
         // 랜덤정렬
         rtans = rtans.OrderBy(item => Random.Range(-1f, 1f)).ToArray();
