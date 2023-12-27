@@ -26,10 +26,7 @@ public class card : MonoBehaviour
             // 수정: recordTime이 5초 이상인지 확인하는 조건으로 변경
             if (recordTime >= 5) //5초가 경과하면
             {
-                record = false; //카운트 완료후 다시 초기화
-                recordTime = 0; //카운트 완료후 다시 초기화2
-                Invoke("closeCardInvoke", 0f);
-                gameManager.i.firstCard = null; //첫번째 카드 초기화
+                Invoke("oneCardClose", 0f);
             }
         }
     }
@@ -48,7 +45,7 @@ public class card : MonoBehaviour
             gameManager.i.firstCard = gameObject;
             record = true; // 첫 번째 카드를 열 때 시간 기록 시작
         }
-        else
+        else if(gameManager.i.firstCard != null)
         {
             record = false; // 두 번째 카드를 열 때 시간 기록 중지
             recordTime = 0;
@@ -77,5 +74,12 @@ public class card : MonoBehaviour
         anim.SetBool("isOpen", false);
         transform.Find("back").gameObject.SetActive(true);
         transform.Find("front").gameObject.SetActive(false);
+    }
+    void onCardClose()
+    {
+        record = false; //카운트 완료후 다시 초기화
+        recordTime = 0; //카운트 완료후 다시 초기화2
+        Invoke("closeCardInvoke", 0f);
+        gameManager.i.firstCard = null; //첫번째 카드 초기화
     }
 }
