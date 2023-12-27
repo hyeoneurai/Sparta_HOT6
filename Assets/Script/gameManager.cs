@@ -30,6 +30,7 @@ public class gameManager : MonoBehaviour
     public float time = 30.0f; 
     float timeScore = 0f;
     float totalScore = 0f;
+    float recordTime = 0f;
     int count = 0;
 
     void Awake()
@@ -73,6 +74,16 @@ public class gameManager : MonoBehaviour
     {
         time -= Time.deltaTime; ;
         timeTxt.text = time.ToString("N2");
+        if (firstCard != null && secondCard == null)
+        {
+            recordTime += Time.deltaTime;
+        }
+        if (recordTime >= 4.5)
+        {
+            firstCard.GetComponent<card>().closeCard();
+            firstCard = null;
+            recordTime = 0;
+        }
 
         if (time <= 0.0f)
         {
@@ -93,6 +104,7 @@ public class gameManager : MonoBehaviour
 
     public void isMatched()
     {
+        recordTime = 0;
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         mtime.SetActive(false);
