@@ -73,7 +73,9 @@ public class gameManager : MonoBehaviour
     void Update()
     {
         time -= Time.deltaTime; ;
+        time = Mathf.Max(0.0f, time); // 시간이 음수일 경우 0으로 설정
         timeTxt.text = time.ToString("N2");
+
         if (firstCard != null && secondCard == null)
         {
             recordTime += Time.deltaTime;
@@ -172,7 +174,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0f;
         audioSource.Stop(); // 게임 종료시 음악 정지
 
-        timeScore = time * 10;
+        timeScore = time;
         timeScoreTxt.text = timeScore.ToString("N2");
         totalScore = timeScore - count;
         totalScoreTxt.text = totalScore.ToString("N2");

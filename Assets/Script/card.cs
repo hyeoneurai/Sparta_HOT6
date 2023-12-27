@@ -28,7 +28,6 @@ public class card : MonoBehaviour
         transform.Find("front").gameObject.SetActive(true);
         transform.Find("back").gameObject.SetActive(false);
 
-        
 
         if (gameManager.i.firstCard == null)
         {
