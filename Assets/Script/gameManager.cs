@@ -18,8 +18,8 @@ public class gameManager : MonoBehaviour
     public Text countTxt;
     public Text timeScoreTxt;
     public Text totalScoreTxt;
-    public GameObject mtime;
-    public Animator mtimeAni;
+    public GameObject mtime; // 켰다 껐다 할 오브젝트 설정
+    public Animator mtimeAni; // 애니메이션 트리거를 위한 설정
     public Text selectedCharacterTxt; // 추가: 일치하는 캐릭터 이름을 표시할 UI 텍스트
 
     public AudioClip start; //시작시 소리
@@ -110,7 +110,7 @@ public class gameManager : MonoBehaviour
         recordTime = 0;
         string firstCardImage = firstCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("front").GetComponent<SpriteRenderer>().sprite.name;
-        mtime.SetActive(false);
+        mtime.SetActive(false); // mtime 꺼짐 (1번만 실행)
 
         if (firstCardImage == secondCardImage)
         {
@@ -143,8 +143,8 @@ public class gameManager : MonoBehaviour
         {
 
 
-            mtime.SetActive(true);
-            mtimeAni.SetTrigger("endMtime");
+            mtime.SetActive(true); // mtime(-1) 켜짐
+            mtimeAni.SetTrigger("endMtime"); // 조건당 1번만 실행을 위한 트리거
             // 불일치하는 경우 실패 메시지 표시
             Debug.Log("Not Matched! Try Again.");
             selectedCharacterTxt.text = "실패!";
